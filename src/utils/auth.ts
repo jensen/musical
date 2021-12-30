@@ -5,6 +5,12 @@ const state = {
 
 export const getToken = async () => {
   const now = Math.round(new Date().getTime() / 1000);
+  const remaining = state.expires - now;
+
+  if (remaining <= 60) {
+    state.token = null;
+    state.expires = 0;
+  }
 
   if (state.expires === 0) {
     const { access_token, expires_in } = await fetch(

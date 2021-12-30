@@ -10,11 +10,11 @@ export let loader: LoaderFunction = async ({ request, params }) => {
 };
 
 export default function Index() {
-  const { artists } = useLoaderData();
+  const data = useLoaderData();
 
   return (
-    <ul className="p-2 grid grid-cols-4">
-      {artists.items
+    <ul className="p-2 grid grid-cols-1 sm:grid-cols-4">
+      {data.artists.items
         .filter((artist) => artist.images.length > 0 && artist.popularity > 10)
         .map((artist) => {
           const [image] = artist.images;
